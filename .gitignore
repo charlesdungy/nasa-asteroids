@@ -1,0 +1,7 @@
+.vscode
+.DS_Store
+.classpath
+.project
+.settings/
+
+config.txt
