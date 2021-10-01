@@ -5,3 +5,8 @@
 .settings/
 
 config.txt
+hashtags.txt
+
+src/main/resources/
+src/test
+target/
