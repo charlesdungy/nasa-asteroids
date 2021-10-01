@@ -9,7 +9,7 @@ public class MainDriver {
         String configFilePath = "src/main/resources/config.txt";
         Config config = getConfig(configFilePath);
 
-        // Getresponse, parse it, and set Asteroid objects.
+        // Get response, parse it, and set Asteroid objects.
         String response = new CreateRequest(
             getURI(
                 getTodaysDate(), 
