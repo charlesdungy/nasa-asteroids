@@ -26,7 +26,8 @@ public class ReadFromDB extends ConnectToDB {
                 while (rs.next()) {
                     String str = "On this day, %s, the closest asteroid to us is %s, traveling ";
                     str += "at %d mph. It missed us by %d miles.";
-                    resultString = String.format(str, 
+                    resultString = String.format(
+                        str, 
                         rs.getString("DateObserved"), 
                         rs.getString("AsteroidName"), 
                         rs.getInt("MilesPerHour"), 

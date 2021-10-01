@@ -47,6 +47,7 @@ public class MainDriver {
             config.getDbPassword(), 
             config.getDbPath()
         );
+        
         dbRead.createConnection();
         dbRead.callStoredProcedure(sqlStmt, getTodaysDate());
         dbRead.closeConnection();
