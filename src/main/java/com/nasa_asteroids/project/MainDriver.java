@@ -70,9 +70,9 @@ public class MainDriver {
 
     public static String getInsertSQLStmt() {
         String sqlStmt = "INSERT INTO ASTEROIDS (AsteroidIdNasa, AsteroidName, ";
-            sqlStmt += "AbsoluteMagnitude, EstimatedDiameterMin, EstimatedDiameterMax, ";
-            sqlStmt += "PotentiallyHazardousAsteroid, MilesPerHour, ";
-            sqlStmt += "MilesMissedDistance, DateObserved) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        sqlStmt += "AbsoluteMagnitude, EstimatedDiameterMin, EstimatedDiameterMax, ";
+        sqlStmt += "PotentiallyHazardousAsteroid, MilesPerHour, ";
+        sqlStmt += "MilesMissedDistance, DateObserved) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         return sqlStmt;    
     }
 
