@@ -24,7 +24,7 @@ public class MainDriver {
         String resultString = readFromDB(config);
         
         // Sending Tweet.
-        String hashtagFilePath = "src/main/resources/hashtags.txt";
+        String hashtagFilePath = config.getHashtagFile();
         String randomHashtag = getRandomHashtag(hashtagFilePath);
         BuildTwitterInstance twitter = getTwitterInstance(config);
         twitter.buildConfiguration();

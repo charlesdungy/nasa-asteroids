@@ -28,6 +28,7 @@ public class Config {
             configMap.put("TWITTER_BEARER_TOKEN", s.next());
             configMap.put("TWITTER_ACCESS_TOKEN", s.next());
             configMap.put("TWITTER_ACCESS_TOKEN_SECRET", s.next());
+            configMap.put("HASHTAG_FILE", s.next());
             configMap = Collections.unmodifiableMap(configMap);
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,5 +69,9 @@ public class Config {
 
     public String getTwitterBearerToken() {
         return configMap.get("TWITTER_BEARER_TOKEN");
+    }
+
+    public String getHashtagFile() {
+        return configMap.get("HASHTAG_FILE");
     }
 }
