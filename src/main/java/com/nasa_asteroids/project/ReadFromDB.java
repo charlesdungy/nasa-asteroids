@@ -16,7 +16,7 @@ public class ReadFromDB extends ConnectToDB {
         return resultString;
     }
     
-    public ResultSet callStoredProcedure(String callStmt, String todaysDate) {
+    public void callStoredProcedure(String callStmt, String todaysDate, String resultDate) {
         if (super.checkConnection()) {
             try (
                 CallableStatement statement = connection.prepareCall(callStmt);
@@ -25,19 +25,22 @@ public class ReadFromDB extends ConnectToDB {
                 ResultSet rs = statement.executeQuery();
                 while (rs.next()) {
                     String str = "On this day, %s, the closest asteroid to us is %s, traveling ";
-                    str += "at %d mph. It missed us by %d miles.";
-                    resultString = String.format(
+                    str += "at %,d mph. It missed us by %,d miles.";
+
+                    this.resultString = String.format(
                         str, 
-                        rs.getString("DateObserved"), 
+                        resultDate,
                         rs.getString("AsteroidName"), 
                         rs.getInt("MilesPerHour"), 
                         rs.getInt("MilesMissedDistance")
                     ); 
+
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+        } else {
+            this.resultString = null;
         }
-        return null;
     }
 }

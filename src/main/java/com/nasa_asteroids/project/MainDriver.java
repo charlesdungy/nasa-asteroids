@@ -10,19 +10,20 @@ public class MainDriver {
         Config config = getConfig(configFilePath);
 
         // Get response, parse it, and set Asteroid objects.
+        String dateFormat = "uuuu-MM-dd";
         String response = new CreateRequest(
             getURI(
-                getTodaysDate(), 
+                getTodaysDate(dateFormat), 
                 config.getAPIKey())
             ).getResponse();
-        ProcessResponse pr = new ProcessResponse(response, getTodaysDate());
+        ProcessResponse pr = new ProcessResponse(response, getTodaysDate(dateFormat));
         List<Asteroid> asteroids = getAsteroids(pr);
 
         // Inserting and Reading to/from db.
         String totalInserted = insertIntoDB(config, asteroids);
         System.out.println(totalInserted);
         String resultString = readFromDB(config);
-        
+
         // Sending Tweet.
         String hashtagFilePath = config.getHashtagFile();
         String randomHashtag = getRandomHashtag(hashtagFilePath);
@@ -48,8 +49,15 @@ public class MainDriver {
             config.getDbPath()
         );
         
+        String dateFormat = "uuuu-MM-dd";
+        String resultDateFormat = "MM-dd-uuuu";
+        
         dbRead.createConnection();
-        dbRead.callStoredProcedure(sqlStmt, getTodaysDate());
+        dbRead.callStoredProcedure(
+            sqlStmt, 
+            getTodaysDate(dateFormat), 
+            getTodaysDate(resultDateFormat)
+        );
         dbRead.closeConnection();
         return dbRead.getResultString();
     }
@@ -63,7 +71,8 @@ public class MainDriver {
         );
         
         writeToDB.createConnection();
-        int[] updateCounts = writeToDB.insert(asteroids, getTodaysDate(), sqlStmt);
+        String dateFormat = "uuuu-MM-dd";
+        int[] updateCounts = writeToDB.insert(asteroids, getTodaysDate(dateFormat), sqlStmt);
         writeToDB.closeConnection();
         return String.format("Total inserted: %d", updateCounts.length);
     }
@@ -91,8 +100,8 @@ public class MainDriver {
         return new Config(new File(filename));
     }
 
-    public static String getTodaysDate() {
-        return new TodaysDate().getTodaysDate();
+    public static String getTodaysDate(String format) {
+        return new TodaysDate(format).getTodaysDate();
     }
 
     public static String getURI(String todaysDate, String APIKey) {

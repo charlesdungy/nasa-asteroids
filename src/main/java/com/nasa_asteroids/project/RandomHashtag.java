@@ -10,33 +10,39 @@ import java.util.Scanner;
 
 public class RandomHashtag {
     
-    private String finalHashtag;
-    private List<String> hashtags = new ArrayList<>();
+    private final String finalHashtag;
+    private final List<String> hashtags;
 
     public RandomHashtag(String path) {
-        readFile(path);
-        setFinalHashTag();
+        this.hashtags = readFile(path);
+        this.finalHashtag = setFinalHashTag();
     }
 
     public String getFinalHashtag() {
         return finalHashtag;
     }
 
-    private void readFile(String filename) {
+    private List<String> readFile(String filename) {
+        List<String> hashtagList = new ArrayList<>();
         try {
             Scanner s = new Scanner(new File(filename));
             while (s.hasNextLine()) {
-                hashtags.add(s.nextLine());
+                hashtagList.add(s.nextLine());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return hashtagList;
     }
 
-    private void setFinalHashTag() {
-        Collections.shuffle(hashtags);
-        Random random = new Random();
-        int index = random.nextInt(hashtags.size());
-        finalHashtag = hashtags.get(index);
+    private String setFinalHashTag() {
+        if (!hashtags.isEmpty()) {
+            Collections.shuffle(hashtags);
+            Random random = new Random();
+            int index = random.nextInt(hashtags.size());
+            return hashtags.get(index);
+        } else {
+            return null;
+        }
     }
 }

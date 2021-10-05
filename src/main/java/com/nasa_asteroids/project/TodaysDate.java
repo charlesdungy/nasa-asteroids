@@ -7,13 +7,13 @@ public class TodaysDate {
     
     private String todaysDate;
 
-    public TodaysDate() {
-        setTodaysDate();
+    public TodaysDate(String format) {
+        this.todaysDate = setTodaysDate(format);
     }
 
-    private void setTodaysDate() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-        this.todaysDate = dtf.format(LocalDate.now()).toString();
+    private String setTodaysDate(String format) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(format);
+        return dtf.format(LocalDate.now()).toString();
     }
 
     public String getTodaysDate() {

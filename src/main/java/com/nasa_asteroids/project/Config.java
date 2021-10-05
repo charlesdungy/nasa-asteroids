@@ -2,37 +2,37 @@ package com.nasa_asteroids.project;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Config {
 
-    private Map<String, String> configMap = new HashMap<>();
+    private final Map<String, String> configMap;
 
     public Config(File file) {
-        readConfig(file);
+        this.configMap = readConfig(file);
     }
 
-    private void readConfig(File file) {
+    private Map<String, String> readConfig(File file) {
+        Map<String, String> mapForConfig = new HashMap<>();
         try (
             Scanner s = new Scanner(file)
         ) {
-            configMap.put("API_KEY", s.next());
-            configMap.put("DB_USER", s.next());
-            configMap.put("DB_PASSWORD", s.next());
-            configMap.put("DB_PATH", s.next());
-            configMap.put("TWITTER_API_KEY", s.next());
-            configMap.put("TWITTER_API_KEY_SECRET", s.next());
-            configMap.put("TWITTER_BEARER_TOKEN", s.next());
-            configMap.put("TWITTER_ACCESS_TOKEN", s.next());
-            configMap.put("TWITTER_ACCESS_TOKEN_SECRET", s.next());
-            configMap.put("HASHTAG_FILE", s.next());
-            configMap = Collections.unmodifiableMap(configMap);
+            mapForConfig.put("API_KEY", s.next());
+            mapForConfig.put("DB_USER", s.next());
+            mapForConfig.put("DB_PASSWORD", s.next());
+            mapForConfig.put("DB_PATH", s.next());
+            mapForConfig.put("TWITTER_API_KEY", s.next());
+            mapForConfig.put("TWITTER_API_KEY_SECRET", s.next());
+            mapForConfig.put("TWITTER_BEARER_TOKEN", s.next());
+            mapForConfig.put("TWITTER_ACCESS_TOKEN", s.next());
+            mapForConfig.put("TWITTER_ACCESS_TOKEN_SECRET", s.next());
+            mapForConfig.put("HASHTAG_FILE", s.next());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return mapForConfig;
     }
 
     public String getAPIKey() {

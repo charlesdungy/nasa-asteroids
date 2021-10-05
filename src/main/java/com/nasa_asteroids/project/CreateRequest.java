@@ -9,26 +9,28 @@ import java.net.URI;
 
 public class CreateRequest {
     
-    private HttpResponse<String> response;
+    private final HttpResponse<String> response;
 
     public CreateRequest(String uri) {
-        generateResponse(uri);
+        this.response = generateResponse(uri);
     }
 
     public String getResponse() {
         return response.body();
     }
 
-    private void generateResponse(String uri) {
+    private HttpResponse<String> generateResponse(String uri) {
+        HttpResponse<String> localResponse = null;
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(uri))
             .build();
             
         try {
-            response = client.send(request, BodyHandlers.ofString());
+            localResponse = client.send(request, BodyHandlers.ofString());
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
+        return localResponse;
     }
 }
