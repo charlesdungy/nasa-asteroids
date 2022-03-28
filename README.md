@@ -4,7 +4,9 @@ This is a Java project that uses the [Nasa Asteroid - NeoWs (Near Earth Object W
 
 ## Description
 
-The program gets data from the Nasa Asteroid - NeoWs API on a daily basis, per the given date. After processing the response into Asteroid objects, the data are stored in a MySQL database. The closest object to Earth is found among the data based on today's date and that information ~~is then~~ was tweeted [@closestAsteroid](https://twitter.com/closestAsteroid).
+The program gets data from the Nasa Asteroid - NeoWs API on a daily basis, per the given date. After processing the response into Asteroid objects, the data are stored in a MySQL database. 
+
+The closest object to Earth ~~is~~ was found among the data based on ~~today's~~ some day's date and that information ~~is~~ was then tweeted [@closestAsteroid](https://twitter.com/closestAsteroid).
 
 Note: this program is no longer running.
 
