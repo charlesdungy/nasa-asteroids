@@ -6,7 +6,7 @@ import java.util.List;
 public class MainDriver {
 
     public static void main(String args[]) {
-        String configFilePath = "src/main/resources/config.txt";
+        String configFilePath = getConfigFilePath();
         Config config = getConfig(configFilePath);
 
         // Get response, parse it, and set Asteroid objects.
@@ -39,6 +39,10 @@ public class MainDriver {
             config.getTwitterAccessToken(),
             config.getTwitterAccessTokenSecret()
         );
+    }
+
+    public static String getConfigFilePath() {
+        return "/Users/charlesdungy/GitHub/nasa-asteroids/project/src/main/resources/config.txt";
     }
 
     public static String readFromDB(Config config) {
